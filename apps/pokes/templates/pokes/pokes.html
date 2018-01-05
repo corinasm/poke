@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <title>Pokes</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{%  static 'pokes/css/style.css' %}">
+
+</head>
+<body>
+    
+    <h2> Hello {{ user.alias }}!</h2>
+
+    <p><a href = '/logout'>Logout</a></p>
+
+    <p>{{ count }} people poked you!</p>
+   
+    <div id="poked">
+    {% for poker in pokers %}
+       <p>{{ poker.alias}} poked you. </p>
+    {% endfor %}
+    </div>    
+
+    <h3>People you may want to poke:</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Alias</th>
+            <th>Email Address</th>
+            <th>Poke History</th>
+            <th>Action</th>
+        </tr>
+        {% for user in other_users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.alias }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.poke_count }} pokes</td>
+            <td><a href='/poke_user/{{ user.id }}'> <button>Poke</button></a></td> 
+        </tr>
+        {% endfor %}
+    </table>    
+
+</body>
+</html>    
